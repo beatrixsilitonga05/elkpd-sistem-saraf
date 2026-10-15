@@ -1,0 +1,520 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-LKPD Sistem Saraf Kelas XI - UNIMED</title>
+    <style>
+        :root {
+            --primary: #006633; /* Warna khas UNIMED */
+            --secondary: #008844;
+            --accent: #ffd700;
+            --bg: #f4f7f6;
+            --text: #2c3e50;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            border-bottom: 4px solid var(--primary);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo-unimed {
+            width: 90px;
+            height: auto;
+        }
+
+        .header-title h1 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .header-title h2 {
+            font-size: 1.1rem;
+            color: #444;
+            margin-top: 5px;
+        }
+
+        .header-title p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .author-badge {
+            background: #e8f5e9;
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 15px;
+            background: #e0e0e0;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 8px rgba(0,102,51,0.3);
+        }
+
+        /* Card Section */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        h3.section-title {
+            color: var(--primary);
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pbl-badge {
+            background: #fff3cd;
+            color: #856404;
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .deep-badge {
+            background: #d1ecf1;
+            color: #0c5460;
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Interactive Tables & Inputs */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: var(--primary);
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-top: 5px;
+            resize: vertical;
+        }
+
+        textarea:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 5px rgba(0,102,51,0.3);
+        }
+
+        /* Quiz & Matching Styles */
+        .quiz-option {
+            display: block;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin: 8px 0;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .quiz-option:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-submit {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: var(--secondary);
+        }
+
+        .feedback-box {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            display: none;
+            font-weight: bold;
+        }
+
+        .feedback-success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .feedback-error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Tab Content Control */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .info-box {
+            background: #eef9f3;
+            border-left: 4px solid var(--primary);
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Universitas Negeri Medan -->
+    <header>
+        <div class="header-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Logo_UNIMED.png" alt="Logo UNIMED" class="logo-unimed">
+            <div class="header-title">
+                <h1>E-LKPD INTERAKTIF SISTEM SARAF</h1>
+                <h2>Berbasis Problem Based Learning dengan Pendekatan Deep Learning</h2>
+                <p>Mata Pelajaran Biologi Kelas XI - SMA Negeri 11 Medan</p>
+                <div class="author-badge">Disusun Oleh: Beatrix Octaviana Silitonga (NIM 4233141016)</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Navigasi Pertemuan -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('p0')">Petunjuk & Tujuan</button>
+            <button class="tab-btn" onclick="switchTab('p1')">Pertemuan 1: Sel Saraf</button>
+            <button class="tab-btn" onclick="switchTab('p2')">Pertemuan 2: Gerak & Sistem</button>
+            <button class="tab-btn" onclick="switchTab('p3')">Pertemuan 3: Pola Hidup</button>
+        </div>
+
+        <!-- TAB 0: PETUNJUK & TUJUAN PEMBELAJARAN -->
+        <div id="p0" class="tab-content active">
+            <div class="card">
+                <h3 class="section-title">🎯 Tujuan Pembelajaran (Capaian Pembelajaran)</h3>
+                <ol style="margin-left: 20px; line-height: 1.8;">
+                    <li>Mengidentifikasi bagian-bagian struktur sel saraf.</li>
+                    <li>Mendeskripsikan impuls saraf, gerak sadar, dan gerak refleks.</li>
+                    <li>Mendeskripsikan sistem saraf pusat dan sistem saraf tepi.</li>
+                    <li>Menyajikan hasil analisis pengaruh pola hidup terhadap kelainan pada struktur dan fungsi organ sistem saraf pada manusia.</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3 class="section-title">📌 Petunjuk Penggunaan E-LKPD</h3>
+                <div class="info-box">
+                    <strong>Prinsip Pembelajaran Mendalam (Deep Learning):</strong><br>
+                    • <i>Mindful Learning</i>: Pahami tujuan aktivitas secara sadar dan reflektif.<br>
+                    • <i>Meaningful Learning</i>: Hubungkan materi biologi dengan masalah nyata kehidupan sehari-hari.<br>
+                    • <i>Joyful Learning</i>: Nikmati pengalaman belajar melalui kuis dan fitur interaktif.
+                </div>
+                <p>Isilah identitas diri Anda sebelum memulai kegiatan:</p>
+                <form id="form-identitas" style="margin-top: 10px;">
+                    <label><strong>Nama Lengkap:</strong></label>
+                    <input type="text" placeholder="Masukkan nama Anda" required>
+                    <label style="margin-top: 10px; display:block;"><strong>Kelas:</strong></label>
+                    <input type="text" placeholder="Contoh: XI-3" required>
+                </form>
+            </div>
+        </div>
+
+        <!-- TAB 1: PERTEMUAN 1 -->
+        <div id="p1" class="tab-content">
+            <!-- Orientasi Masalah -->
+            <div class="card">
+                <h3 class="section-title">
+                    <span>FASE 1: Orientasi Masalah</span>
+                    <span class="pbl-badge">PBL</span>
+                    <span class="deep-badge">Meaningful</span>
+                </h3>
+                <div class="info-box">
+                    <strong>Masalah Pemantik:</strong><br>
+                    Ketika seseorang mengalami gangguan atau kerusakan pada <i>selubung mielin</i> (seperti pada penderita <i>Multiple Sclerosis</i>), penghantaran sinyal di dalam tubuh menjadi lambat atau terputus. Berdasarkan pengamatan awalmu, mengapa kerusakan struktur selubung mikroskopis ini dapat memengaruhi respons seluruh tubuh secara signifikan?
+                </div>
+                <label><strong>Hasil Analisis Awal & Pertanyaan Penyelidikanmu:</strong></label>
+                <textarea rows="3" placeholder="Tuliskan analisis atau pertanyaan pemantik kelompokmu di sini..."></textarea>
+            </div>
+
+            <!-- Ringkasan Materi Interaktif -->
+            <div class="card">
+                <h3 class="section-title">Bahan Ajar Ringkas: Struktur Neuron & Impuls</h3>
+                <p>Sel saraf (neuron) adalah unit fungsional penyusun sistem saraf yang bertugas meneruskan impuls listrik. Neuron terdiri atas dendrit, badan sel, inti sel, akson, selubung mielin, nodus Ranvier, dan ujung akson.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bagian Neuron</th>
+                            <th>Fungsi Utama</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Dendrit</td><td>Menerima rangsangan dari sel/reseptor lain.</td></tr>
+                        <tr><td>Badan Sel & Inti</td><td>Mengatur aktivitas sel dan mengolah sinyal.</td></tr>
+                        <tr><td>Akson</td><td>Menghantarkan impuls menjauhi badan sel.</td></tr>
+                        <tr><td>Selubung Mielin</td><td>Isolator lemak yang mempercepat jalannya impuls.</td></tr>
+                        <tr><td>Nodus Ranvier</td><td>Celah loncatan impuls (penghantaran saltatori).</td></tr>
+                        <tr><td>Ujung Akson</td><td>Melepaskan neurotransmiter di celah sinapsis.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Interaktif / Games -->
+            <div class="card">
+                <h3 class="section-title">
+                    <span>Aktivitas Interaktif: Kuis Pemahaman Struktur Neuron</span>
+                    <span class="deep-badge">Joyful</span>
+                </h3>
+                <p><strong>Soal:</strong> Bagian neuron yang berfungsi melepaskan neurotransmiter untuk meneruskan sinyal melintasi celah sinapsis adalah...</p>
+                <div class="quiz-option" onclick="checkAnswer(this, false, 'fb-p1')">A. Dendrit</div>
+                <div class="quiz-option" onclick="checkAnswer(this, false, 'fb-p1')">B. Nodus Ranvier</div>
+                <div class="quiz-option" onclick="checkAnswer(this, true, 'fb-p1')">C. Ujung Akson (Terminal Akson)</div>
+                <div class="quiz-option" onclick="checkAnswer(this, false, 'fb-p1')">D. Selubung Mielin</div>
+                <div id="fb-p1" class="feedback-box"></div>
+            </div>
+        </div>
+
+        <!-- TAB 2: PERTEMUAN 2 -->
+        <div id="p2" class="tab-content">
+            <!-- Orientasi Masalah -->
+            <div class="card">
+                <h3 class="section-title">
+                    <span>FASE 1: Orientasi Masalah</span>
+                    <span class="pbl-badge">PBL</span>
+                </h3>
+                <div class="info-box">
+                    <strong>Studi Kasus Refleks:</strong><br>
+                    Saat Anda secara tidak sengaja menyentuh gagang panci yang sangat panas, tangan Anda akan terangkat dengan sangat cepat bahkan <i>sebelum</i> Anda sempat menyadari rasa sakitnya. Mengapa tubuh bertindak lebih cepat daripada kesadaran kita?
+                </div>
+                <label><strong>Jelaskan Alur Rangsangan pada Kasus di Atas:</strong></label>
+                <textarea rows="3" placeholder="Tuliskan alur jalurnya (Reseptor -> Saraf Sensorik -> ... -> Efektor)"></textarea>
+            </div>
+
+            <!-- Ringkasan Perbandingan -->
+            <div class="card">
+                <h3 class="section-title">Materi: Gerak Sadar vs Gerak Refleks</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspek</th>
+                            <th>Gerak Sadar</th>
+                            <th>Gerak Refleks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pengendalian</td>
+                            <td>Ditoleransi dan dikontrol secara sadar oleh Otak Besar.</td>
+                            <td>Otomatis, cepat, tanpa kontrol kesadaran awal.</td>
+                        </tr>
+                        <tr>
+                            <td>Pusat Saraf Integrasi</td>
+                            <td>Otak Besar (Cerebrum)</td>
+                            <td>Sumsum Tulang Belakang (Spinal Cord)</td>
+                        </tr>
+                        <tr>
+                            <td>Contoh</td>
+                            <td>Mengambil pulpen di meja</td>
+                            <td>Menarik tangan dari benda panas / ketukan lutut</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Game Menyusun Urutan Refleks -->
+            <div class="card">
+                <h3 class="section-title">
+                    <span>Interaktif: Permainan Alur Jalur Refleks</span>
+                    <span class="deep-badge">Joyful & Mindful</span>
+                </h3>
+                <p>Urutkan komponen jalur gerak refleks berikut dari awal hingga akhir dengan memilih nomor yang tepat:</p>
+                <p style="font-size: 0.9rem; color:#666; margin-bottom: 10px;">(Pilihan: 1. Efektor/Otot, 2. Reseptor Kulit, 3. Interneuron Sumsum Tulang Belakang, 4. Saraf Motorik, 5. Saraf Sensorik)</p>
+                
+                <label>Urutan Tepat (Isi dengan deretan angka, misal: 1-2-3-4-5):</label>
+                <input type="text" id="refleks-input" placeholder="Ketik urutan angka di sini...">
+                <button class="btn-submit" onclick="checkReflexOrder()">Cek Jawaban</button>
+                <div id="fb-p2" class="feedback-box"></div>
+            </div>
+        </div>
+
+        <!-- TAB 3: PERTEMUAN 3 -->
+        <div id="p3" class="tab-content">
+            <div class="card">
+                <h3 class="section-title">
+                    <span>FASE 1: Investigasi Pola Hidup & Kelainan Saraf</span>
+                    <span class="pbl-badge">PBL</span>
+                    <span class="deep-badge">Critical Evaluation</span>
+                </h3>
+                <div class="info-box">
+                    <strong>Masalah Analisis Pola Hidup:</strong><br>
+                    Banyak informasi di media sosial mengklaim bahwa "begadang sambil main game dapat langsung merusak sel otak secara permanen." Sebagai peserta didik yang kritis, bagaimana Anda memilah antara fakta medis dan opini yang berlebihan?
+                </div>
+            </div>
+
+            <!-- Lembar Analisis Kasus -->
+            <div class="card">
+                <h3 class="section-title">Lembar Kerja Analisis Penyelidikan (Deep Learning)</h3>
+                <form id="form-p3">
+                    <label><strong>1. Identifikasi Faktor Risiko Pola Hidup (misal: Kurang Tidur/Stres/Psikotropika):</strong></label>
+                    <textarea rows="2" placeholder="Tuliskan faktor risiko yang kelompokmu kaji..."></textarea>
+
+                    <label style="margin-top:10px; display:block;"><strong>2. Dampak Mekanisme Fisiologis pada Sistem Saraf (Berdasarkan Bukti Ilmiah):</strong></label>
+                    <textarea rows="3" placeholder="Jelaskan pengaruhnya terhadap kerja neurotransmiter/organ saraf..."></textarea>
+
+                    <label style="margin-top:10px; display:block;"><strong>3. Solusi & Upaya Pencegahan Nyata yang Dapat Diterapkan:</strong></label>
+                    <textarea rows="2" placeholder="Rekomendasi pola hidup sehat..."></textarea>
+
+                    <button type="button" class="btn-submit" style="margin-top: 15px;" onclick="saveEWorksheet()">Kirim Jawaban E-LKPD ke Guru</button>
+                </form>
+                <div id="fb-p3" class="feedback-box"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Tab switching function
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Quiz feedback function
+        function checkAnswer(element, isCorrect, feedbackId) {
+            const fb = document.getElementById(feedbackId);
+            fb.style.display = 'block';
+            if(isCorrect) {
+                fb.className = 'feedback-box feedback-success';
+                fb.innerHTML = '✅ Benar sekali! Ujung akson mensekresikan neurotransmiter di celah sinapsis.';
+            } else {
+                fb.className = 'feedback-box feedback-error';
+                fb.innerHTML = '❌ Jawaban belum tepat. Coba baca kembali tabel fungsi bagian neuron di atas!';
+            }
+        }
+
+        // Reflex order check
+        function checkReflexOrder() {
+            const input = document.getElementById('refleks-input').value.trim().replace(/\s+/g, '');
+            const fb = document.getElementById('fb-p2');
+            fb.style.display = 'block';
+
+            // Jalur benar: Reseptor (2) -> Sensorik (5) -> Interneuron (3) -> Motorik (4) -> Efektor (1)
+            if(input === "2-5-3-4-1" || input === "2,5,3,4,1") {
+                fb.className = 'feedback-box feedback-success';
+                fb.innerHTML = '🎉 Tepat sekali! Jalur refleks: Reseptor (2) ➔ Saraf Sensorik (5) ➔ Sumsum Tulang Belakang (3) ➔ Saraf Motorik (4) ➔ Efektor/Otot (1).';
+            } else {
+                fb.className = 'feedback-box feedback-error';
+                fb.innerHTML = '⚠️ Urutan masih keliru. Ingat: Rangsangan diterima reseptor terlebih dahulu sebelum dibawa saraf sensorik!';
+            }
+        }
+
+        // Save E-Worksheet
+        function saveEWorksheet() {
+            const fb = document.getElementById('fb-p3');
+            fb.style.display = 'block';
+            fb.className = 'feedback-box feedback-success';
+            fb.innerHTML = '🚀 Jawaban E-LKPD berhasil tersimpan! Terima kasih telah menyelesaikan seluruh aktivitas dengan pendekatan Deep Learning.';
+        }
+    </script>
+</body>
+</html>
